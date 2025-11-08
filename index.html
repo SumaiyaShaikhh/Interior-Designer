@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Velure Interiors - Luxury Interior Design</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- GLOBAL ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 12px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 8px 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #c4a484;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #c4a484;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        /* ---------- HAMBURGER MENU ---------- */
+        .menu-icon {
+            display: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* ---------- HOME SECTION ---------- */
+        .home {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .home-content h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .home-content h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #c4a484;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid #c4a484;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: #c4a484;
+            transform: translateY(-3px);
+        }
+        /* ---------- SERVICES ---------- */
+        .services {
+            background-color: #ebebeb;
+            padding: 100px 5%;
+            color: #333;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            color: #222;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: #c4a484;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #666;
+            text-align: center;
+        }
+
+        .services-content {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ---------- SERVICES SLIDER ---------- */
+        .services-slider-container {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .services-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+            min-height: 400px;
+        }
+
+        .service-slide {
+            display: none;
+            padding: 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .service-slide.active {
+            display: block;
+        }
+
+        .service-slide-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .service-slide-content {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .service-slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .service-slide-content p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ---------- WHY HIRE US SECTION ---------- */
+        .why-hire-us {
+            flex: 1;
+            min-width: 0;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .why-hire-us h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #222;
+            border-bottom: 2px solid #c4a484;
+            padding-bottom: 10px;
+        }
+
+        .hire-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .hire-icon {
+            font-size: 1.5rem;
+            color: #c4a484;
+            margin-right: 15px;
+            min-width: 30px;
+        }
+
+        .hire-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .hire-text p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* ---------- SLIDER CONTROLS ---------- */
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .slider-btn {
+            background: #222;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .slider-btn:hover {
+            background: #c4a484;
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: #222;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ---------- ABOUT ---------- */
+        .about {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1858&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 70vh;
+            padding: 100px 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .about-container {
+            max-width: 900px;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background-color: #111;
+            color: white;
+            padding: 60px 10% 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #c4a484;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: #c4a484;
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: #c4a484;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: #c4a484;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ---------- ANIMATIONS ---------- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 992px) {
+            .home h1 {
+                font-size: 3rem;
+            }
+            
+            .services-content {
+                flex-direction: column;
+            }
+            
+            .services-slider-container,
+            .why-hire-us {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-items {
+                display: none;
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.95);
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                gap: 0;
+            }
+
+            .nav-items.active {
+                display: flex;
+            }
+
+            .nav-link {
+                padding: 15px 0;
+                width: 100%;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .home h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-slide-image {
+                height: 250px;
+            }
+
+            .about-container {
+                padding: 30px;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+                text-align: left;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .why-hire-us {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home {
+                min-height: 80vh;
+            }
+
+            .services {
+                padding: 80px 5%;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .service-slide-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .service-slide-content p {
+                font-size: 1rem;
+            }
+            
+            .about-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .slider-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hire-point {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hire-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+        <img src="public/logo.png" alt="Casa Velure Interiors Logo" class="logo">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <div class="nav-items" id="nav-items">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="index.html#our-services" class="nav-link">Services</a>
+    <a href="index.html#about-us" class="nav-link">About</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+</div>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section class="home">
+        <div class="home-content">
+            <h1>CASA VELURE</h1>
+            <h2>INTERIORS</h2>
+            <p class="tagline">Transforming Spaces Into experiences</p>
+            <a href="#our-services" class="cta-button">Discover Our Vision</a>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="our-services" class="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">We offer comprehensive interior design solutions tailored to transform your spaces into elegant, functional environments that reflect your unique style.</p>
+        
+        <div class="services-content">
+            <div class="services-slider-container">
+                <div class="services-slider">
+                    <!-- Service 1: Residential Interiors -->
+                    <div class="service-slide active">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Residential Interiors" class="service-slide-image">
+                        <div class="service-slide-content">
+                            <h3>Residential Interiors</h3>
+                            <p>Elegant and functional home designs crafted to reflect your lifestyle and comfort, creating spaces that feel uniquely yours.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 2: Commercial Spaces -->
+                    <div class="service-slide">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Commercial Spaces" class="service-slide-image">
+                        <div class="service-slide-content">
+                            <h3>Commercial Spaces</h3>
+                            <p>Transforming offices, studios, and retail spaces into inspiring environments that enhance productivity and brand identity.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 3: Space Planning -->
+                    <div class="service-slide">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Space Planning" class="service-slide-image">
+                        <div class="service-slide-content">
+                            <h3>Space Planning</h3>
+                            <p>Optimizing every inch of your space with smart, aesthetic design solutions that maximize functionality and flow.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 4: Custom Furniture & Decor -->
+                    <div class="service-slide">
+                        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Custom Furniture & Decor" class="service-slide-image">
+                        <div class="service-slide-content">
+                            <h3>Custom Furniture & Decor</h3>
+                            <p>Tailor-made pieces that add character and cohesion to your interiors, crafted with precision and attention to detail.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 5: Color Consultation -->
+                    <div class="service-slide">
+                        <img src="https://images.unsplash.com/photo-1622372738946-62e02505feb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Color Consultation" class="service-slide-image">
+                        <div class="service-slide-content">
+                            <h3>Color Consultation</h3>
+                            <p>Advising clients on color palettes, textures, and materials to create cohesive interiors that evoke the desired mood.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 6: Renovation & Remodeling -->
+                    <div class="service-slide">
+                        <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Renovation & Remodeling" class="service-slide-image">
+                        <div class="service-slide-content">
+                            <h3>Renovation & Remodeling</h3>
+                            <p>Transforming outdated spaces through complete design makeovers from concept to completion, breathing new life into your property.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn" id="prev-btn">Previous</button>
+                    <div class="slider-dots" id="slider-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                        <span class="dot" data-index="3"></span>
+                        <span class="dot" data-index="4"></span>
+                        <span class="dot" data-index="5"></span>
+                    </div>
+                    <button class="slider-btn" id="next-btn">Next</button>
+                </div>
+            </div>
+            
+            <div class="why-hire-us">
+                <h3>Why Choose Casa Velure?</h3>
+                
+                <div class="hire-point">
+                    <div class="hire-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="hire-text">
+                        <h4>Expert Craftsmanship</h4>
+                        <p>With years of experience in luxury interior design, our team delivers exceptional quality and attention to detail in every project.</p>
+                    </div>
+                </div>
+                
+                <div class="hire-point">
+                    <div class="hire-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="hire-text">
+                        <h4>Creative Vision</h4>
+                        <p>We blend innovative design concepts with timeless elegance to create spaces that are both beautiful and functional.</p>
+                    </div>
+                </div>
+                
+                <div class="hire-point">
+                    <div class="hire-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="hire-text">
+                        <h4>Personalized Approach</h4>
+                        <p>Every project is tailored to your unique style, preferences, and lifestyle needs, ensuring your space truly reflects you.</p>
+                    </div>
+                </div>
+                
+                <div class="hire-point">
+                    <div class="hire-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="hire-text">
+                        <h4>End-to-End Service</h4>
+                        <p>From initial concept to final installation, we manage every aspect of your project for a seamless, stress-free experience.</p>
+                    </div>
+                </div>
+                
+                <div class="hire-point">
+                    <div class="hire-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="hire-text">
+                        <h4>Premium Materials</h4>
+                        <p>We source only the finest materials and work with skilled artisans to ensure lasting beauty and quality in every detail.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section id="about-us" class="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>About Us</h2>
+                <p>
+                    At <strong>Casa Velure Interiors</strong>, we believe every space tells a story, one of elegance, comfort, and individuality.
+                    Our team of passionate designers specializes in creating interiors that blend functionality with refined aesthetics.
+                </p>
+                <p>
+                    From contemporary apartments to timeless villas, we curate designs that reflect your personality while ensuring every detail speaks of quality and sophistication.
+                </p>
+                <p>
+                    With a commitment to excellence, we transform houses into homes and commercial spaces into experiences where every corner inspires.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Gulistan e Jauhar, Karachi, Pakistan</p>
+                <p><i class="fas fa-phone"></i> +92 335 9269269</p>
+                <p><i class="fas fa-envelope"></i> info@casavelure.com</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <a href="#">Residential Interiors</a>
+                <a href="#">Commercial Spaces</a>
+                <a href="#">Space Planning</a>
+                <a href="#">Custom Furniture</a>
+                <a href="#">Renovation & Remodeling</a>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="index.html#blog" class="footer-column-link">Blog</a>
+                <a href="#about-us">Reviews</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Portfolio</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 <strong>Casa Velure Interiors</strong>. All Rights Reserved. | Karachi, Pakistan</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle nav menu
+        function toggleMenu() {
+            document.getElementById("nav-items").classList.toggle("active");
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Service slider functionality
+        const slides = document.querySelectorAll('.service-slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        // Function to show specific slide
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active class from all dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Show current slide and activate corresponding dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            currentSlide = index;
+        }
+
+        // Next slide
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % totalSlides;
+            showSlide(nextIndex);
+        }
+
+        // Previous slide
+        function prevSlide() {
+            let prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(prevIndex);
+        }
+
+        // Start auto-rotation
+        function startAutoRotation() {
+            slideInterval = setInterval(nextSlide, 4000); // Change every 4 seconds
+        }
+
+        // Stop auto-rotation (when user interacts)
+        function stopAutoRotation() {
+            clearInterval(slideInterval);
+        }
+
+        // Event listeners
+        nextBtn.addEventListener('click', () => {
+            stopAutoRotation();
+            nextSlide();
+            startAutoRotation();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopAutoRotation();
+            prevSlide();
+            startAutoRotation();
+        });
+
+        // Dot navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                stopAutoRotation();
+                const index = parseInt(dot.getAttribute('data-index'));
+                showSlide(index);
+                startAutoRotation();
+            });
+        });
+
+        // Start auto-rotation on page load
+        startAutoRotation();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('nav-items').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

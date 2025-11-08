@@ -1,0 +1,762 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Casa Velure Interiors</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ---------- GLOBAL ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  padding: 10px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  height: 60px;
+}
+
+.nav-items {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #c4a484;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ---------- CONTACT SECTION ---------- */
+.contact-section {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+              url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  position: relative;
+}
+
+.contact-container {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-header {
+  background: #1a1a1a;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.contact-header h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.contact-header p {
+  font-size: 1.1rem;
+  color: #ccc;
+}
+
+.contact-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ---------- FORM SECTION ---------- */
+.form-section {
+  flex: 1;
+  min-width: 300px;
+  padding: 30px;
+  background: #f9f9f9;
+}
+
+.form-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #c4a484;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  border-color: #c4a484;
+  outline: none;
+}
+
+/* ---------- CATEGORY SELECTION ---------- */
+.category-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.category-option {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.category-option:hover {
+  border-color: #c4a484;
+  transform: translateY(-3px);
+}
+
+.category-option.selected {
+  border-color: #c4a484;
+  background: #fcf8f3;
+}
+
+.category-image {
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.category-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.category-content h4 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+/* ---------- SUBCATEGORY SELECTION ---------- */
+.subcategory-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.subcategory-option {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.subcategory-option:hover {
+  border-color: #c4a484;
+}
+
+.subcategory-option.selected {
+  border-color: #c4a484;
+  background: #fcf8f3;
+}
+
+.subcategory-image {
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.subcategory-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.subcategory-content h4 {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+/* ---------- SIZE SELECTION ---------- */
+.size-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.size-option {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.size-option:hover {
+  border-color: #c4a484;
+}
+
+.size-option.selected {
+  border-color: #c4a484;
+  background: #fcf8f3;
+}
+
+/* ---------- SUBMIT BUTTON ---------- */
+.submit-btn {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  background-color: #c4a484;
+  color: black;
+}
+
+/* ---------- INFO SECTION ---------- */
+.info-section {
+  flex: 1;
+  min-width: 300px;
+  padding: 30px;
+  background: white;
+  border-left: 1px solid #eee;
+}
+
+.info-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #c4a484;
+  padding-bottom: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  color: #c4a484;
+  margin-right: 15px;
+  min-width: 30px;
+}
+
+.info-text h4 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.info-text p {
+  color: #666;
+  font-size: 1rem;
+}
+
+.service-area {
+  background: #fcf8f3;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border-left: 4px solid #c4a484;
+}
+
+.service-area h4 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.service-area p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .nav-items {
+    display: none;
+    flex-direction: column;
+    background-color: black;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .nav-items.active {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .contact-content {
+    flex-direction: column;
+  }
+  
+  .info-section {
+    border-left: none;
+    border-top: 1px solid #eee;
+  }
+  
+  .category-selection {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  
+  .subcategory-selection {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .size-selection {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
+</style>
+</head>
+
+<body>
+<header class="navbar">
+  <img src="public/logo.png" alt="Casa Velure Interiors Logo" class="logo">
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <div class="nav-items" id="nav-items">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="index.html#our-services" class="nav-link">Services</a>
+    <a href="index.html#about-us" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </div>
+</header>
+
+<section class="contact-section">
+  <div class="contact-container">
+    <div class="contact-header">
+      <h2>Start Your Design Journey</h2>
+      <p>Fill out the form below and our design experts will contact you shortly</p>
+    </div>
+    
+    <div class="contact-content">
+      <div class="form-section">
+        <h3>Project Details</h3>
+        <form onsubmit="return submitForm(event)">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+          </div>
+          
+          <div class="form-group">
+            <label>Select Service Category</label>
+            <div class="category-selection">
+              <div class="category-option" onclick="selectCategory('flooring')">
+                <img src="https://www.mannington.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fr69d9lchftro%2F4V0pThtoKpG8AmJXAZqxiE%2F67c922252b157dc3d12296d739317112%2FBlog_Post_Ultimate_Guide_To_Vinyl_Plank_Flooring_Image_.jpg&w=2048&q=75" alt="Flooring" class="category-image">
+                <div class="category-content">
+                  <h4>Flooring</h4>
+                </div>
+              </div>
+              
+              <div class="category-option" onclick="selectCategory('ceiling')">
+                <img src="https://www.swinterior.pk/wp-content/uploads/2024/11/FC10.png" alt="Ceiling" class="category-image">
+                <div class="category-content">
+                  <h4>Ceiling</h4>
+                </div>
+              </div>
+              
+              <div class="category-option" onclick="selectCategory('furniture')">
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Furniture" class="category-image">
+                <div class="category-content">
+                  <h4>Furniture</h4>
+                </div>
+              </div>
+              
+              <div class="category-option" onclick="selectCategory('lighting')">
+                <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Lighting" class="category-image">
+                <div class="category-content">
+                  <h4>Lighting</h4>
+                </div>
+              </div>
+              
+              <div class="category-option" onclick="selectCategory('kitchen')">
+                <img src="https://i.pinimg.com/736x/a7/09/1c/a7091c6f019f2e6838e867acc8d1361c.jpg" alt="Kitchen" class="category-image">
+                <div class="category-content">
+                  <h4>Kitchen</h4>
+                </div>
+              </div>
+              
+              <div class="category-option" onclick="selectCategory('bathroom')">
+                <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Bathroom" class="category-image">
+                <div class="category-content">
+                  <h4>Bathroom</h4>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" id="category" name="category" required>
+          </div>
+          
+          <div class="form-group" id="subcategory-group" style="display: none;">
+            <label>Select Type</label>
+            <div class="subcategory-selection" id="subcategory-selection">
+              <!-- Subcategories will be dynamically added here -->
+            </div>
+            <input type="hidden" id="subcategory" name="subcategory" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Approximate Room Size (sq ft)</label>
+            <div class="size-selection">
+              <div class="size-option" onclick="selectSize('small')">
+                <h4>Small</h4>
+                <p>Under 150 sq ft</p>
+              </div>
+              
+              <div class="size-option" onclick="selectSize('medium')">
+                <h4>Medium</h4>
+                <p>150-300 sq ft</p>
+              </div>
+              
+              <div class="size-option" onclick="selectSize('large')">
+                <h4>Large</h4>
+                <p>300-500 sq ft</p>
+              </div>
+              
+              <div class="size-option" onclick="selectSize('xlarge')">
+                <h4>X-Large</h4>
+                <p>500+ sq ft</p>
+              </div>
+            </div>
+            <input type="hidden" id="size" name="size" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="budget">Budget Range (PKR)</label>
+            <select id="budget" name="budget" required>
+              <option value="">-- Select Budget --</option>
+              <option value="50k-100k">50,000 - 100,000 PKR</option>
+              <option value="100k-250k">100,000 - 250,000 PKR</option>
+              <option value="250k-500k">250,000 - 500,000 PKR</option>
+              <option value="500k-1m">500,000 - 1,000,000 PKR</option>
+              <option value="1m+">1,000,000+ PKR</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Project Description</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your vision, preferences, and any specific requirements..."></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Submit Inquiry
+          </button>
+        </form>
+      </div>
+      
+      <div class="info-section">
+        <h3>Contact Information</h3>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="info-text">
+            <h4>Our Location</h4>
+            <p>Casa Velure Interiors<br>Gulistan e Jauhar, Karachi, Pakistan</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="info-text">
+            <h4>Phone Number</h4>
+            <p>+92 335 936-926-9</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="info-text">
+            <h4>Email Address</h4>
+            <p>contact@casavelure.com</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="info-text">
+            <h4>Business Hours</h4>
+            <p>Monday - Saturday: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 5:00 PM</p>
+          </div>
+        </div>
+        
+        <div class="service-area">
+          <h4>Service Area</h4>
+          <p>We currently provide our premium interior design services exclusively in Karachi, Pakistan. Our team specializes in residential and commercial projects throughout the city.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2025 <strong>Casa Velure Interiors</strong>. All Rights Reserved. | Karachi, Pakistan</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("nav-items").classList.toggle("active");
+}
+
+// Category selection with visual feedback
+function selectCategory(category) {
+  // Remove selected class from all options
+  document.querySelectorAll('.category-option').forEach(option => {
+    option.classList.remove('selected');
+  });
+  
+  // Add selected class to clicked option
+  event.currentTarget.classList.add('selected');
+  
+  // Update hidden input
+  document.getElementById('category').value = category;
+  
+  // Update subcategory options
+  updateSubOptions(category);
+}
+
+// Subcategory selection with visual feedback
+function selectSubcategory(subcategory) {
+  // Remove selected class from all options
+  document.querySelectorAll('.subcategory-option').forEach(option => {
+    option.classList.remove('selected');
+  });
+  
+  // Add selected class to clicked option
+  event.currentTarget.classList.add('selected');
+  
+  // Update hidden input
+  document.getElementById('subcategory').value = subcategory;
+}
+
+// Size selection with visual feedback
+function selectSize(size) {
+  // Remove selected class from all options
+  document.querySelectorAll('.size-option').forEach(option => {
+    option.classList.remove('selected');
+  });
+  
+  // Add selected class to clicked option
+  event.currentTarget.classList.add('selected');
+  
+  // Update hidden input
+  document.getElementById('size').value = size;
+}
+
+// Dynamic subcategory updates with images
+function updateSubOptions(category) {
+  const subcategoryContainer = document.getElementById("subcategory-selection");
+  const subcategoryGroup = document.getElementById("subcategory-group");
+  
+  subcategoryContainer.innerHTML = '';
+  
+  // Show the subcategory section
+  subcategoryGroup.style.display = 'block';
+  
+  const options = {
+    flooring: [
+      { name: "Marble Flooring", image: "https://techsquadteam.com/assets/profile/blogimages/de2e6fff1015fa010971966db35f6e19.jpg" },
+      { name: "Wooden Flooring", image: "https://www.mannington.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fr69d9lchftro%2F4V0pThtoKpG8AmJXAZqxiE%2F67c922252b157dc3d12296d739317112%2FBlog_Post_Ultimate_Guide_To_Vinyl_Plank_Flooring_Image_.jpg&w=2048&q=75" },
+      { name: "Vinyl Flooring", image: "https://gcflooringpros.com/wp-content/uploads/2017/06/Installing-vinyl-flooring.jpg" },
+      { name: "Ceramic Tiles", image: "https://image.made-in-china.com/155f0j00CWUcNlLRgGqh/Carrara-600X600-Ceramica-Porcelanato-Cheap-Ceramic-White-Tiles-Floor.jpg" }
+    ],
+    ceiling: [
+      { name: "POP Ceiling", image: "https://i.pinimg.com/736x/08/30/1d/08301d9d8b37ac264bc3957c6dc7929c.jpg" },
+      { name: "Gypsum Board", image: "https://content.jdmagicbox.com/v2/comp/palakkad/u7/9999px491.x491.210116231517.a4u7/catalogue/eminent-casa-gypsum-interior-solution-ottapalam-palakkad-false-ceiling-contractors-8rtfbrwueh-250.jpg" },
+      { name: "Wooden Beams", image: "https://t3.ftcdn.net/jpg/17/11/62/68/360_F_1711626896_OKEIWX8PrdxGSnVjBmJ6yaf6eyc5TyCV.jpg" },
+      { name: "Coffered Ceiling", image: "https://content.instructables.com/F7J/DM9C/KM3GBVHP/F7JDM9CKM3GBVHP.jpg?auto=webp" }
+    ],
+    furniture: [
+      { name: "Custom Sofas", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" },
+      { name: "Wardrobes", image: "https://interwood.pk/cdn/shop/products/iving-3faa1bd-interwood-mobel.jpg?v=1757335511" },
+      { name: "Dining Sets", image: "https://induscraft.com/cdn/shop/files/VeritasSheeshamWoodClassic6SeaerRectangularDiningSet_1.webp?v=1761888317&width=1500" },
+      { name: "Office Furniture", image: "https://woodc.pk/wp-content/uploads/2023/05/wdqsjes.jpg" }
+    ],
+    lighting: [
+      { name: "Pendant Lights", image: "https://i.pinimg.com/736x/27/43/c1/2743c1471199825d4bed311c11b68523.jpg" },
+      { name: "LED Panels", image: "https://www.decorpot.com/images/blogimage418052061light-switching-panels.jpg" },
+      { name: "Chandeliers", image: "https://moooni.com/cdn/shop/products/HLL0060828-_-2_1200x1200.jpg?v=1663962492" },
+      { name: "Wall Lamps", image: "https://ikiru.in/cdn/shop/files/Funnel-BR-BRSA-TaperPleat6-WL2_7.jpg?v=1753530531&width=1080" }
+    ],
+    kitchen: [
+      { name: "Modular Kitchen", image: "https://i.pinimg.com/736x/54/bb/05/54bb05e99bd91f68b938fbc9027df5d9.jpg" },
+      { name: "L-Shaped Kitchen", image: "https://www.finetoshine.com/wp-content/uploads/2020/07/Simple-Kitchen-Cabinet-Design-L-Shape.jpg" },
+      { name: "Island Kitchen", image: "https://i.pinimg.com/564x/79/98/68/7998685b741096590cb7f9d21fc42653.jpg" },
+      { name: "Contemporary Kitchen", image: "https://optimise2.assets-servd.host/thick-groundhog/production/assets/blog/Modern-Kitchen.jpg?w=1200&h=630&q=82&auto=format&fit=crop&dm=1716383414&s=30f47b00c8dc2e6c2ea4394a873c0e5a" }
+    ],
+    bathroom: [
+      { name: "Modern Bathroom", image: "https://images.unsplash.com/photo-1620626011761-996317b8d101?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" },
+      { name: "Classic Bathroom", image: "https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2008/6/11/1/gail-drury-blue-bathtub.jpg.rend.hgtvcom.1280.1280.85.suffix/1400943960260.webp" },
+      { name: "Luxury Spa Bathroom", image: "https://www.maplestudiodesign.com/administration/blogs/1741045046b0bb8708b5fe3b6d04f14cb93c0270a6-_2_.jpg" },
+      { name: "Compact Bathroom", image: "https://www.armacmartin.com/cdn/shop/articles/unnamed_a2f1f6db-b1d0-4d46-a7a8-cf07bbc91a2d.jpg?v=1748849812" }
+    ]
+  };
+
+  if (options[category]) {
+    options[category].forEach(item => {
+      const option = document.createElement("div");
+      option.className = "subcategory-option";
+      option.onclick = function() { selectSubcategory(item.name.toLowerCase().replace(/\s+/g, '-')) };
+      
+      option.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" class="subcategory-image">
+        <div class="subcategory-content">
+          <h4>${item.name}</h4>
+        </div>
+      `;
+      
+      subcategoryContainer.appendChild(option);
+    });
+  }
+}
+
+function submitForm(event) {
+  event.preventDefault();
+  
+  // Validate form
+  const category = document.getElementById('category').value;
+  const subcategory = document.getElementById('subcategory').value;
+  const size = document.getElementById('size').value;
+  
+  if (!category) {
+    alert("Please select a service category");
+    return false;
+  }
+  
+  if (!subcategory) {
+    alert("Please select a type");
+    return false;
+  }
+  
+  if (!size) {
+    alert("Please select a room size");
+    return false;
+  }
+  
+  // Show success message
+  alert("Thank you for your inquiry! Our design team will contact you within 24 hours to discuss your project.");
+  
+  // In a real application, you would submit the form data to a server here
+  // For now, we'll just reset the form
+  document.querySelector('form').reset();
+  document.querySelectorAll('.category-option, .subcategory-option, .size-option').forEach(option => {
+    option.classList.remove('selected');
+  });
+  
+  // Hide subcategory section
+  document.getElementById('subcategory-group').style.display = 'none';
+  
+  return false;
+}
+</script>
+
+</body>
+</html>
